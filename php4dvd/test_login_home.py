@@ -2,18 +2,16 @@ __author__ = 'brbis'
 
 # -*- coding: utf-8 -*-
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
-import unittest, time, re
+import unittest
+
 
 class Untitled(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Remote('http://10.0.2.15:4444/wd/hub', webdriver.DesiredCapabilities.FIREFOX)
         self.driver.implicitly_wait(30)
-        self.base_url = "http://localhost/"
+        self.base_url = "http://10.0.2.15/"
         self.verificationErrors = []
         self.accept_next_alert = True
 
