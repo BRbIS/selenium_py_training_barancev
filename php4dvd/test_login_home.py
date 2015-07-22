@@ -9,9 +9,9 @@ import unittest
 
 class Untitled(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Remote('http://10.0.2.15:4444/wd/hub', webdriver.DesiredCapabilities.FIREFOX)
+        self.driver = webdriver.Remote('http://192.168.1.8:4444/wd/hub', webdriver.DesiredCapabilities.FIREFOX)
         self.driver.implicitly_wait(30)
-        self.base_url = "http://10.0.2.15/"
+        self.base_url = "http://192.168.1.8/"
         self.verificationErrors = []
         self.accept_next_alert = True
 

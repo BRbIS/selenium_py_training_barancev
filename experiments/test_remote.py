@@ -10,7 +10,7 @@ class PythonOrgSearch(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Remote(
-            command_executor='http://10.0.2.15:4444/wd/hub',
+            command_executor='http://192.168.1.8:4444/wd/hub',
             desired_capabilities=DesiredCapabilities.FIREFOX)
 
     def test_search_in_python_org(self):
