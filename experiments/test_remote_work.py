@@ -3,25 +3,15 @@ __author__ = 'agorgoma'
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.proxy import *
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class PythonOrgSearch(unittest.TestCase):
 
     def setUp(self):
-        myProxy = "http://172.17.8.10:8080"
-
-        proxy = Proxy({
-        'proxyType': ProxyType.MANUAL,
-        'httpProxy': myProxy,
-        'ftpProxy': myProxy,
-        'sslProxy': myProxy,
-        'noProxy':''})
-
         self.driver = webdriver.Remote(
-            command_executor='http://192.168.1.8:4444/wd/hub',
-            desired_capabilities=DesiredCapabilities.FIREFOX(proxy=proxy))
+            command_executor='http://172.17.10.17:4444/wd/hub',
+            desired_capabilities=DesiredCapabilities.FIREFOX)
 
     def test_search_in_python_org(self):
         driver = self.driver

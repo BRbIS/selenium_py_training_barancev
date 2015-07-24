@@ -7,6 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
 
+
 class Untitled(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox()
