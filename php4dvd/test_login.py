@@ -1,7 +1,7 @@
 __author__ = 'agorgoma'
 
 from model.user import User
-from selenium_fixture import app
+# from selenium_fixture import app
 
 
 def test_login_with_invalid_credentials(app):
