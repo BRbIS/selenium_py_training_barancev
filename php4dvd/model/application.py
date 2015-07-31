@@ -6,6 +6,7 @@ from php4dvd.pages.internal_page import InternalPage
 from php4dvd.pages.login_page import LoginPage
 from php4dvd.pages.user_management_page import UserManagementPage
 from php4dvd.pages.user_profile_page import UserProfilePage
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import *
 
@@ -24,12 +25,27 @@ class Application(object):
         self.internal_page.logout_button.click()
         self.wait.until(alert_is_present()).accept()
 
+    def ensure_logout(self):
+        element = self.wait.until(presence_of_element_located((By.CSS_SELECTOR, "nav, #loginform")))
+        if element.tag_name == "nav":
+            self.logout()
+
     def login(self, user):
         lp = self.login_page
         lp.is_this_page
         lp.username_field.send_keys(user.username)
         lp.password_field.send_keys(user.password)
         lp.submit_button.click()
+
+    def ensure_login_as(self, user):
+        element = self.wait.until(presence_of_element_located((By.CSS_SELECTOR, "nav, #loginform")))
+        if element.tag_name == "nav":
+            # we are on internal page
+            if self.is_logged_in_as(user):
+                return
+            else:
+                self.logout()
+        self.login(user)
 
     def is_logged_in(self):
         return self.internal_page.is_this_page
