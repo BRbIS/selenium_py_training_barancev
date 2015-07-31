@@ -1,10 +1,11 @@
 __author__ = 'agorgoma'
 
 #base_url = "http://172.17.10.17/"
-
+from php4dvd.model.user import User
 from php4dvd.pages.internal_page import InternalPage
 from php4dvd.pages.login_page import LoginPage
 from php4dvd.pages.user_management_page import UserManagementPage
+from php4dvd.pages.user_profile_page import UserProfilePage
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import *
 
@@ -16,6 +17,7 @@ class Application(object):
         self.login_page = LoginPage(driver, base_url)
         self.wait = WebDriverWait(driver, 10)
         self.internal_page = InternalPage(driver, base_url)
+        self.user_profile_page = UserProfilePage(driver, base_url)
         self.user_management_page = UserManagementPage(driver, base_url)
 
     def logout(self):
@@ -32,8 +34,19 @@ class Application(object):
     def is_logged_in(self):
         return self.internal_page.is_this_page
 
+    def is_logged_in_as(self, user):
+        return self.is_logged_in() \
+            and self.get_logged_user().username == user.username
+
     def is_not_logged_in(self):
         return self.login_page.is_this_page
+
+    def get_logged_user(self):
+        self.internal_page.user_profile_link.click()
+        upp = self.user_profile_page
+        upp.is_this_page
+        return User(username=upp.username_field.get_attribute("value"),
+                    email=upp.email_field.get_attribute("value"))
 
     def add_user(self, user):
         self.internal_page.user_management_link.click()
