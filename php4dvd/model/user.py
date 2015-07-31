@@ -14,4 +14,7 @@ class User(object):
     @classmethod
     def random(cls):
         from random import randint
-        return cls(username="user" + str(randint(0, 1000000)), password="pass" + str(randint(0, 1000000)))
+        return cls(username="user" + str(randint(0, 1000000)),
+                   password="pass" + str(randint(0, 1000000)),
+                   email="user" + str(randint(0, 1000000)) + "@test.com")
+
