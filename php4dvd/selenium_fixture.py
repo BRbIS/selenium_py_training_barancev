@@ -12,6 +12,7 @@ import pytest
 def app(request, browser_type, base_url):
     if browser_type == "firefox":
         driver = webdriver.Remote('http://172.17.10.17:4444/wd/hub', webdriver.DesiredCapabilities.FIREFOX)
+    # FIXME разобраться у удаленным запуском хрома(сервер пишет нужно указать какие-то опции)
     elif browser_type == "chrome":
         driver = webdriver.Remote('http://172.17.10.17:4444/wd/hub', webdriver.DesiredCapabilities.CHROME)
     # TODO установить драйвер для IE
