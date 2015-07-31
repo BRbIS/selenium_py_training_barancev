@@ -1,6 +1,6 @@
 __author__ = 'agorgoma'
 
-from php4dvd.pages.page import Page
+from page import Page
 from selenium.webdriver.common.by import By
 
 
